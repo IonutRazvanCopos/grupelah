@@ -1,0 +1,128 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #8ec5fc, #3fa6fa);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    margin: 0;
+    padding: 0;
+    color: #343a40;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+h1, h3 {
+    font-family: 'Great Vibes';
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 1s ease-in-out;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.list-group-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #343a40;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    animation: slideUp 0.6s ease-in-out;
+    font-family: 'Great Vibes', cursive;
+}
+
+.list-group-item:hover {
+    background-color: #0e50df;
+    color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-5px);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+.list-group-item strong {
+    font-size: 1.2rem;
+    color: #343a40;
+    margin-right: 10px;
+    font-family: 'Libre Baskerville', serif;
+}
+
+.btn-primary {
+    background-color: #ffffff;
+    color: #2338fa;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #2449ec;
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .list-group-item {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
