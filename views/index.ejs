@@ -44,7 +44,7 @@
         <ul class="list-group mt-4">
             <% list.forEach(text => { %>
             <li class="list-group-item d-flex justify-content-between align-items-center shadow-sm mb-3 text-light">
-            <!-- Caseta pentru text -->
+
             <div class="text-box w-100" onclick="location.href='/text/<%= text.id %>'" style="cursor: pointer;">
             <a href="/text/<%= text.id %>" class="text-decoration-none text-light w-100 d-block">
                 <span class="fw-bold"><%= text.formattedDate %></span>
@@ -83,14 +83,12 @@
                     <textarea name="details" id="details" rows="5" class="form-control" placeholder="Enter details"></textarea>
                 </div>
 
-                <!-- ✅ Recurență -->
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="isRecurring" name="isRecurring">
                     <label class="form-check-label" for="isRecurring">Este recurent?</label>
                 </div>
 
                 <div id="recurrenceOptions" style="display: none;">
-                    <!-- Tip de recurență -->
                     <div class="mb-3">
                     <label for="recurrenceType" class="form-label">Tip Recurență</label>
                     <select class="form-select" name="recurrenceType" id="recurrenceType">
@@ -100,13 +98,11 @@
                     </select>
                     </div>
 
-                    <!-- Data de sfârșit -->
                     <div class="mb-3">
                     <label for="recurrenceEndDate" class="form-label">Până când?</label>
                     <input type="date" class="form-control" name="recurrenceEndDate" id="recurrenceEndDate">
                     </div>
 
-                    <!-- Zilele săptămânii pentru weekly -->
                     <div class="mb-3" id="weekdaysOptions" style="display: none;">
                     <label class="form-label">Zilele săptămânii</label><br>
                     <div class="form-check form-check-inline">
@@ -139,7 +135,6 @@
                     </div>
                     </div>
 
-                    <!-- Zilele lunii pentru monthly -->
                     <div class="mb-3" id="monthDaysOptions" style="display: none;">
                     <label for="monthDays" class="form-label">Zilele lunii (ex: 10,15,20)</label>
                     <input type="text" class="form-control" name="monthDays" id="monthDays" placeholder="Introduceți zile separate prin virgulă">
