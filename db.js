@@ -1,13 +1,13 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false
-    },
+    user: 'postgres',
+    host: 'localhost',
+    database: 'postgres',
+    password: 'likeboss12345',
+    port: 5432,
 });
 
-module.exports = pool;
 
 async function initializeDB() {
     try {
@@ -18,6 +18,13 @@ async function initializeDB() {
                 date DATE NOT NULL,
                 details TEXT
             );
+        `);
+
+        await pool.query(`
+            ALTER TABLE texts
+            ADD COLUMN IF NOT EXISTS is_recurring BOOLEAN DEFAULT false,
+            ADD COLUMN IF NOT EXISTS recurrence_type TEXT,
+            ADD COLUMN IF NOT EXISTS recurrence_end_date DATE;
         `);
 
         await pool.query(`
@@ -55,9 +62,12 @@ async function initializeDB() {
 
 initializeDB();
 
-async function createText(content, date, details) {
-    const query = 'INSERT INTO texts (content, date, details) VALUES ($1, $2, $3)';
-    await pool.query(query, [content, date, details]);
+async function createText(content, date, details, isRecurring, recurrenceType, recurrenceEndDate) {
+    const query = `
+        INSERT INTO texts (content, date, details, is_recurring, recurrence_type, recurrence_end_date)
+        VALUES ($1, $2, $3, $4, $5, $6)
+    `;
+    await pool.query(query, [content, date, details, isRecurring, recurrenceType, recurrenceEndDate]);
 }
 
 async function selectAllTexts() {
@@ -82,9 +92,18 @@ async function deleteText(id) {
     await pool.query(query, [id]);
 }
 
-async function updateText(id, content, date, details) {
-    const query = 'UPDATE texts SET content = $1, date = $2, details = $3 WHERE id = $4';
-    await pool.query(query, [content, date, details, id]);
+async function updateText(id, content, date, details, isRecurring, recurrenceType, recurrenceEndDate) {
+  const query = `
+    UPDATE texts
+    SET content = $1,
+        date = $2,
+        details = $3,
+        is_recurring = $4,
+        recurrence_type = $5,
+        recurrence_end_date = $6
+    WHERE id = $7
+  `;
+  await pool.query(query, [content, date, details, isRecurring, recurrenceType, recurrenceEndDate, id]);
 }
 
 async function archiveAndDeleteExpiredTexts() {
